@@ -51,15 +51,31 @@ need_push () {
 }
 
 directory_name() {
-  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+  echo "%{$fg_bold[magenta]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n› '
+function right_prompt() {
+  local color="blue"
+
+  if [[ "$ZSH_KUBECTL_USER" =~ "admin" ]]; then
+    color=red
+  fi
+
+  if (( $+ZSH_KUBECTL_PROMPT )); then
+    echo "%{$fg[$color]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+  else
+    echo "%{$fg_bold[cyan]%}%{$reset_color%}"
+  fi
+}
+
+export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
-  set_prompt
+ # set_prompt
 }
+
+RPROMPT='$(right_prompt)'
