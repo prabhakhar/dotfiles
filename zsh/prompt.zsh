@@ -28,9 +28,9 @@ git_dirty() {
 }
 
 git_prompt_info () {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
+  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
+  # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+  echo "${ref#refs/heads/}"
 }
 
 # This assumes that you always have an origin named `origin`, and that you only
@@ -54,20 +54,6 @@ directory_name() {
   echo "%{$fg_bold[magenta]%}%1/%\/%{$reset_color%}"
 }
 
-function right_prompt() {
-  local color="blue"
-
-  if [[ "$ZSH_KUBECTL_USER" =~ "admin" ]]; then
-    color=red
-  fi
-
-  if (( $+ZSH_KUBECTL_PROMPT )); then
-    echo "%{$fg[$color]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
-  else
-    echo "%{$fg_bold[cyan]%}%{$reset_color%}"
-  fi
-}
-
 export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
@@ -75,7 +61,5 @@ set_prompt () {
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
- # set_prompt
+  set_prompt
 }
-
-RPROMPT='$(right_prompt)'
