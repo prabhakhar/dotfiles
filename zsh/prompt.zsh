@@ -68,7 +68,7 @@ function right_prompt() {
   fi
 }
 
-export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) '
+export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n%(?:%{$fg_bold[green]%}❯:%{$fg_bold[red]%}❯) '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }

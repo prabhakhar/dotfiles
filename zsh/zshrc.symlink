@@ -2,7 +2,7 @@
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=/Volumes/Code
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -49,8 +49,9 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-export GOPATH=/Users/pk/Code/go
+export GOPATH=$PROJECTS/go
 export PATH=$PATH:$GOPATH/bin
 
 eval "$(direnv hook zsh)"
 
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
