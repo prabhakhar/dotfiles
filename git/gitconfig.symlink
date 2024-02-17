@@ -1,8 +1,6 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[hub]
-        protocol = https
 [alias]
         co = checkout
         promote = !$ZSH/bin/git-promote
@@ -16,7 +14,7 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = nvim
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -35,6 +33,5 @@
 	helper = osxkeychain
 [diff "spaceman-diff"]
   command = /opt/homebrew/bin/spaceman-diff
-
 [init]
 	defaultBranch = main
