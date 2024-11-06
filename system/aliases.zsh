@@ -8,3 +8,9 @@ then
   alias ll="gls -l --color"
   alias la='gls -A --color'
 fi
+
+alias python=python3
+alias pip=pip3
+
+alias kc=kubectx
+alias kn=kubens
